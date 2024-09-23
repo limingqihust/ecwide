@@ -59,5 +59,17 @@ public class RequestClient {
     endTime = Instant.now();
     long durationTime = Duration.between(startTime, endTime).toNanos();
     System.out.println((durationTime / 1000000.0) + " ms");
+    CodingScheme scheme = CodingScheme.getFromConfig("config/scheme.ini");
+
+    if (task.equals("repair_chunk")) {
+      System.out.println("size(MiB): " + scheme.chunkSize / 1024.0 / 1024.0);
+      System.out.println("rate(MiB/s): " + scheme.chunkSize / 1024.0 / 1024.0 / (durationTime / 1000000000.0));
+    } else if (task.equals("repair_node")) {
+      System.out.println("size(MiB): " + scheme.chunkSize * 4 / 1024.0 / 1024.0);
+      System.out.println("rate(MiB/s): " + scheme.chunkSize * 4 / 1024.0 / 1024.0 / (durationTime / 1000000000.0));
+    } else {
+      System.out.println("size(MiB): " + scheme.chunkSize / 1024.0 / 1024.0);
+      System.out.println("rate(MiB/s): " + scheme.chunkSize / 1024.0 / 1024.0 / (durationTime / 1000000000.0));
+    }
   }
 }

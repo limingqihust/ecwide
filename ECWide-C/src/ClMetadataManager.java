@@ -251,6 +251,7 @@ public class ClMetadataManager extends MetadataManager {
     }
     // add requestor task
     String data = lostChunkNode != requestor ? chunkName + "#" + requestorLocalChunk : chunkName;
+    System.out.printf("requestor: %d\n", requestor);
     ECTask requestorTask = new ECTask(curTaskId++, ECTaskType.REPAIR_RECV, requestor, requestorRecv, 0, data);
     tasks.add(requestorTask);
     return true;

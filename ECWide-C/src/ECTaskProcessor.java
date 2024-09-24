@@ -311,7 +311,8 @@ class TaskWaiter implements Runnable {
             curDecodeBuffer = buffer.getDecodeBuffer();
             computeThread = computeWorker.addTask(ComputeType.DECODE, curDecodeBuffer);
             waitForThread(computeThread);
-            // FileOp.writeFile(buffer.decodeBuffer, chunksDir + ChunkToRepair);
+            System.out.printf("output path: %s\n", chunksDir + ChunkToRepair);
+            FileOp.writeFile(curDecodeBuffer, chunksDir + ChunkToRepair);
             buffer.returnDecodeBuffer(curDecodeBuffer);
             if (!useLrsReq || isNodeRepairCaller.isEmpty() || isNodeRepairCaller.take()) {
               requestHandler.responseToClient();
